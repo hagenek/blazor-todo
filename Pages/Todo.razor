@@ -12,10 +12,9 @@
     }
 </ul>
 
-<input placeholder="Something todo" @bind="newTodo"/>
-<button @onclick="AddTodo">Add todo</button>
-<button @onclick="RemoveAllTodos">Remove all todos</button>
-
+<input placeholder="Something todo" @onkeyup="@Enter" @bind="newTodo"/>
+<button id="add-todo" @onclick="AddTodo">Add todo</button>
+<button  @onclick="RemoveAllTodos">Remove all todos</button>
 
 @code {
     private IList<TodoItem> todos = new List<TodoItem>();
@@ -30,5 +29,14 @@
     private void RemoveAllTodos() {
         todos.Clear();
     }
+
+    public void Enter(KeyboardEventArgs e)
+{
+    if (e.Code == "Enter" || e.Code == "NumpadEnter")
+    {
+    AddTodo();
     }
 }
+
+}
+
